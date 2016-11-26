@@ -4,11 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Welcome Stranger</title>
+<title>Insert title here</title>
 </head>
 <body>
-Welcome Stranger!
-${pageContext.request.userPrincipal.name}
-
+This is admin page!
 </body>
 </html>
