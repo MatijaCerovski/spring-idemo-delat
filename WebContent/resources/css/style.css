@@ -78,6 +78,24 @@ header nav a {
   outline: none;
 }
 
+.outer {
+    display: table;
+    position: absolute;
+    height: 100%;
+    width: 100%;
+}
+
+.middle {
+    display: table-cell;
+    vertical-align: middle;
+}
+
+.inner {
+    margin-left: auto;
+    margin-right: auto; 
+    width: 500px;
+}
+
 @font-face {
 	font-family: Source Code Pro;
 	font-style: normal; 

@@ -15,7 +15,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 
 @Configuration
 @EnableWebSecurity
-@EnableGlobalMethodSecurity(securedEnabled = true)
+@EnableGlobalMethodSecurity(prePostEnabled=true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Autowired
@@ -36,7 +36,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 	  .antMatchers("/").permitAll()
 	  	//.antMatchers("/home/**").access("hasAnyRole('ROLE_USER', 'ROLE_ADMIN')")
 		//.antMatchers("/admin/**").access("hasRole('ROLE_ADMIN')")
-		.and().formLogin();
+		.and().formLogin()
+		.loginPage("/login")
+		.usernameParameter("username")
+		.passwordParameter("password")
+		.and().csrf()
+		.and().exceptionHandling().accessDeniedPage("/403");
 
 	}
 	
