@@ -18,6 +18,7 @@
 				<div id="login-box">
 
 					<h3>Login with Username and Password</h3>
+					<h3>Or <a href="register">Register</a></h3>
 
 					<c:if test="${not empty error}">
 						<div class="error">${error}</div>
