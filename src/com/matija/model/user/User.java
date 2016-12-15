@@ -1,4 +1,4 @@
-package com.matija.model;
+package com.matija.model.user;
 
 import java.util.HashSet;
 import java.util.Set;
