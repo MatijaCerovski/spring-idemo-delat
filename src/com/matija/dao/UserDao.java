@@ -1,6 +1,6 @@
-package com.matija.user.dao;
+package com.matija.dao;
 
-import com.matija.user.model.User;
+import com.matija.model.User;
 
 public interface UserDao {
 

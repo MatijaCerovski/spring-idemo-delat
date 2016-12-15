@@ -1,4 +1,4 @@
-package com.matija.user.dao;
+package com.matija.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,7 +7,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.matija.user.model.User;
+import com.matija.model.User;
 
 
 @Repository
