@@ -35,7 +35,7 @@ public class AppConfig extends WebMvcConfigurerAdapter {
 	@Bean
 	public SessionFactory sessionFactory() {
 		LocalSessionFactoryBuilder builder = new LocalSessionFactoryBuilder(dataSource());
-		builder.scanPackages("com.matija.user.model").addProperties(getHibernateProperties());
+		builder.scanPackages("com.matija.persistence.model").addProperties(getHibernateProperties());
 
 		return builder.buildSessionFactory();
 	}
