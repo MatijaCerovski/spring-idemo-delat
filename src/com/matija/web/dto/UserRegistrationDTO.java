@@ -1,6 +1,6 @@
-package com.matija.model.registration;
+package com.matija.web.dto;
 
-public class UserRegistration {
+public class UserRegistrationDTO {
 	
 	private String username;
 	private String email;
@@ -10,11 +10,11 @@ public class UserRegistration {
 	
 	
 	
-	public UserRegistration() {
+	public UserRegistrationDTO() {
 		super();
 	}
 
-	public UserRegistration(String username, String email, String password, String confirmedPassword) {
+	public UserRegistrationDTO(String username, String email, String password, String confirmedPassword) {
 		super();
 		this.username = username;
 		this.email = email;

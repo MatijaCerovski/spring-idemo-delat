@@ -1,4 +1,4 @@
-package com.matija.model.user;
+package com.matija.persistence.model;
 
 import static javax.persistence.GenerationType.IDENTITY;
 import javax.persistence.Column;

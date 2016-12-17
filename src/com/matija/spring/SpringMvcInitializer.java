@@ -1,4 +1,4 @@
-package com.matija.config;
+package com.matija.spring;
 
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 

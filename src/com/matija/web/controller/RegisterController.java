@@ -1,4 +1,4 @@
-package com.matija.controller;
+package com.matija.web.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -7,7 +7,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
-import com.matija.model.registration.UserRegistration;
+import com.matija.web.dto.UserRegistrationDTO;
 
 @Controller
 @RequestMapping("/register")
@@ -15,13 +15,13 @@ public class RegisterController {
 	
 	@GetMapping
 	public String openRegister(Model model){
-		UserRegistration user = new UserRegistration();
+		UserRegistrationDTO user = new UserRegistrationDTO();
 		model.addAttribute("user", user);
 		return "register";
 	}
 	
 	@PostMapping
-	public String registerUser(@ModelAttribute("user") UserRegistration user){
+	public String registerUser(@ModelAttribute("user") UserRegistrationDTO user){
 		//Check if user exist 
 		//Check if email exist
 		//Check if password match

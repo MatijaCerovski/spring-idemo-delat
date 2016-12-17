@@ -1,4 +1,4 @@
-package com.matija.config;
+package com.matija.spring;
 
 import java.util.Properties;
 import org.apache.commons.dbcp.BasicDataSource;

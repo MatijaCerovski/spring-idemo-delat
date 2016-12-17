@@ -1,4 +1,4 @@
-package com.matija.controller;
+package com.matija.web.controller;
 
 
 import org.springframework.security.access.prepost.PreAuthorize;

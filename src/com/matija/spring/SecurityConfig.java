@@ -1,4 +1,4 @@
-package com.matija.config;
+package com.matija.spring;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;

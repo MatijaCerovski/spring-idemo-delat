@@ -1,4 +1,4 @@
-package com.matija.controller;
+package com.matija.web.controller;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;

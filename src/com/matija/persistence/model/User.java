@@ -1,4 +1,4 @@
-package com.matija.model.user;
+package com.matija.persistence.model;
 
 import java.util.HashSet;
 import java.util.Set;

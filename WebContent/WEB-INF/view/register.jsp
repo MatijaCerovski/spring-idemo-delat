@@ -22,25 +22,19 @@
 						Your username
 						<form:input path="username" id="username" required="required"
 							type="text" placeholder="makoa" />
-						<c:if test="${not empty usernameError}">
-							<c:out value="${usernameError}" />
-						</c:if>
+						<form:errors path="username" element="div" />
 					</p>
 					<p>
 						Your email
 						<form:input path="email" id="email" required="required"
 							type="email" placeholder="makoa@mail.com" />
-						<c:if test="${not empty emailError}">
-							<c:out value="${emailError}" />
-						</c:if>
+						<form:errors path="email" element="div" />
 					</p>
 					<p>
 						Your password
 						<form:input path="password" id="password" required="required"
 							type="password" placeholder="eg. X8df!90EO" />
-						<c:if test="${not empty passwordError}">
-							<c:out value="${passwordError}" />
-						</c:if>
+						<form:errors path="password" element="div" />
 					</p>
 					<p>
 						Please confirm your password

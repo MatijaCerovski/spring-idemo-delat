@@ -1,4 +1,4 @@
-package com.matija.user.service;
+package com.matija.security;
 
 import java.util.ArrayList;
 import java.util.HashSet;
@@ -14,8 +14,8 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.matija.dao.UserDao;
-import com.matija.model.user.UserRole;
+import com.matija.persistence.dao.UserDao;
+import com.matija.persistence.model.UserRole;
 
 
 @Service("userDetailsService")
@@ -30,7 +30,7 @@ public class MyUserDetailsService implements UserDetailsService {
 	public UserDetails loadUserByUsername(final String username)
 		throws UsernameNotFoundException {
 
-		com.matija.model.user.User user = userDao.findByUserName(username);
+		com.matija.persistence.model.User user = userDao.findByUserName(username);
 		List<GrantedAuthority> authorities =
                                       buildUserAuthority(user.getUserRole());
 
@@ -40,7 +40,7 @@ public class MyUserDetailsService implements UserDetailsService {
 
 	// Converts com.mkyong.users.model.User user to
 	// org.springframework.security.core.userdetails.User
-	private User buildUserForAuthentication(com.matija.model.user.User user,
+	private User buildUserForAuthentication(com.matija.persistence.model.User user,
 		List<GrantedAuthority> authorities) {
 		return new User(user.getUsername(), user.getPassword(),
 			user.isEnabled(), true, true, true, authorities);
