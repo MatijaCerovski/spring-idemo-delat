@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form"%>
+<%@ page session="false"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -38,8 +39,9 @@
 					</p>
 					<p>
 						Please confirm your password
-						<form:input path="confirmedPassword" id="confirmedPassword"
+						<form:input path="matchingPassword" id="matchingPassword"
 							required="required" type="password" placeholder="eg. X8df!90EO" />
+							
 					</p>
 					<p>
 						<input type="submit" value="Sign up" />
