@@ -5,23 +5,31 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import com.matija.validation.PasswordMatches;
+import com.matija.validation.ValidEmail;
+
+@PasswordMatches
 public class UserRegistrationDTO {
 	
 	@NotNull
 	@NotEmpty
-	//@Size(max=2)
+	@Size(max=45)
 	private String username;
 	
     @NotNull
     @NotEmpty
+    @Size(max=254)
+    @ValidEmail
 	private String email;
     
     @NotNull
     @NotEmpty
+    @Size(max=60)
 	private String password;
     
     @NotNull
     @NotEmpty
+    @Size(max=60)
 	private String matchingPassword;
 	
 	

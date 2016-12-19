@@ -86,5 +86,9 @@ public class User {
 	public void setUserRole(Set<UserRole> userRole) {
 		this.userRole = userRole;
 	}
+	
+	public void addUserRole(UserRole userRole) {
+		this.userRole.add(userRole);
+	}
 
 }

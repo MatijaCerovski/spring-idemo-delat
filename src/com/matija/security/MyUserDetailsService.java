@@ -17,22 +17,19 @@ import org.springframework.transaction.annotation.Transactional;
 import com.matija.persistence.dao.UserDao;
 import com.matija.persistence.model.UserRole;
 
-
 @Service("userDetailsService")
 public class MyUserDetailsService implements UserDetailsService {
 
-	//get user from the database, via Hibernate
+	// get user from the database, via Hibernate
 	@Autowired
 	private UserDao userDao;
 
-	@Transactional(readOnly=true)
+	@Transactional(readOnly = true)
 	@Override
-	public UserDetails loadUserByUsername(final String username)
-		throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(final String username) throws UsernameNotFoundException {
 
 		com.matija.persistence.model.User user = userDao.findByUserName(username);
-		List<GrantedAuthority> authorities =
-                                      buildUserAuthority(user.getUserRole());
+		List<GrantedAuthority> authorities = buildUserAuthority(user.getUserRole());
 
 		return buildUserForAuthentication(user, authorities);
 
@@ -41,9 +38,8 @@ public class MyUserDetailsService implements UserDetailsService {
 	// Converts com.mkyong.users.model.User user to
 	// org.springframework.security.core.userdetails.User
 	private User buildUserForAuthentication(com.matija.persistence.model.User user,
-		List<GrantedAuthority> authorities) {
-		return new User(user.getUsername(), user.getPassword(),
-			user.isEnabled(), true, true, true, authorities);
+			List<GrantedAuthority> authorities) {
+		return new User(user.getUsername(), user.getPassword(), user.isEnabled(), true, true, true, authorities);
 	}
 
 	private List<GrantedAuthority> buildUserAuthority(Set<UserRole> userRoles) {

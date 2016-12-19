@@ -2,6 +2,8 @@ package com.matija.web.controller;
 
 import javax.validation.Valid;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -13,11 +15,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.matija.persistence.model.User;
+import com.matija.service.IUserService;
 import com.matija.web.dto.UserRegistrationDTO;
+import com.matija.web.error.UserAlreadyExistException;
+import com.matija.web.error.UsernameAlreadyExistException;
 
 @Controller
 @RequestMapping("/register")
 public class RegisterController {
+
+	@Autowired
+	@Qualifier("userService")
+	IUserService userService;
 
 	@GetMapping
 	public String openRegister(Model model) {
@@ -41,19 +51,44 @@ public class RegisterController {
 		System.out.println(user.getPassword());
 		System.out.println(user.getMatchingPassword());
 		System.out.println("-----------------------------------------------------------------------------------");
-		
-		
-		
-	    if (result.hasErrors()) {
-	        return new ModelAndView("register", "user", user);
-	    } 
-	    else {
-	    	return new ModelAndView("redirect:/login");
-	    	//return "redirect:/login";
-	    }
-		
 
-		
+		User registered = new User();
+		if (!result.hasErrors()) {
+			try {
+				registered = createUserAccount(user, result);
+			} catch (Exception e) {
+				// TODO Auto-generated catch block
+				// e.printStackTrace();
+				if (e instanceof UserAlreadyExistException) {
+					result.rejectValue("email", "", e.getMessage());
+				}
+				if (e instanceof UsernameAlreadyExistException) {
+					result.rejectValue("username", "", e.getMessage());
+				}
+			}
+		}
+
+		if (result.hasErrors()) {
+			return new ModelAndView("register", "user", user);
+		} else {
+			return new ModelAndView("redirect:/login");
+			// return "redirect:/login";
+		}
+
+	}
+
+	private User createUserAccount(UserRegistrationDTO userRegistrationDTO, BindingResult result) throws Exception {
+
+		User registered = null;
+
+		try {
+			registered = userService.saveUser(userRegistrationDTO);
+		} catch (UserAlreadyExistException | UsernameAlreadyExistException e) {
+			// posali exception dalje
+			throw e;
+		}
+
+		return registered;
 	}
 
 }

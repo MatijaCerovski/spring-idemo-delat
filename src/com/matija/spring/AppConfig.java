@@ -1,6 +1,7 @@
 package com.matija.spring;
 
 import java.util.Properties;
+
 import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.springframework.context.annotation.Bean;

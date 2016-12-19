@@ -44,6 +44,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter{
 		.and().exceptionHandling().accessDeniedPage("/403");
 
 	}
+
 	
 	@Bean
 	public PasswordEncoder passwordEncoder(){
