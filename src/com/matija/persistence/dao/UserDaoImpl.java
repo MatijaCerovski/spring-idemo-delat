@@ -3,7 +3,9 @@ package com.matija.persistence.dao;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
@@ -68,5 +70,31 @@ public class UserDaoImpl implements UserDao {
 		return user;
 
 	}
+
+	@SuppressWarnings("unchecked")
+	public List<User> getUsersForAdminPage(int pageNumber) {
+		List<User> users = new ArrayList<User>();
+		int usersPerPage = 50;
+
+		int offset = (pageNumber - 1) * usersPerPage;
+
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
+		criteria.setFirstResult(offset);
+		criteria.setMaxResults(usersPerPage);
+		users = criteria.list();
+		
+		return users;
+		
+	}
+
+	@Override
+	public Long userTotalCount() {
+		Criteria criteriaCount = sessionFactory.getCurrentSession().createCriteria(User.class);
+		criteriaCount.setProjection(Projections.rowCount());
+		Long count = (Long) criteriaCount.uniqueResult();
+		return count;
+	}
+	
+	
 
 }

@@ -44,14 +44,14 @@ public class RegisterController {
 		// Check if password match
 		// If not create user and redirect to login
 		// Else redirect to register with error msg
-
+/*
 		System.out.println("-----------------------------------------------------------------------------------");
 		System.out.println(user.getUsername());
 		System.out.println(user.getEmail());
 		System.out.println(user.getPassword());
 		System.out.println(user.getMatchingPassword());
 		System.out.println("-----------------------------------------------------------------------------------");
-
+*/
 		User registered = new User();
 		if (!result.hasErrors()) {
 			try {
