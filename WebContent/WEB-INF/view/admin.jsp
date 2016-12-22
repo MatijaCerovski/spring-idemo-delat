@@ -65,12 +65,10 @@
 
 			</table>
 
-			<form name='paginationForm' action="<c:url value='/admin' />"
-				method='POST'>
 				<c:forEach var="i" begin="1" end="${totalPages}" varStatus="loop">
-					<input class="btn btn-default" name="${i}" type="submit" value="${i}">
+					<a href="${pageContext.request.contextPath}/admin/${i}" class="btn btn-default"><c:out value="${i}" /></a>
 				</c:forEach>
-			</form>
+
 		</div>
 
 	</div>
