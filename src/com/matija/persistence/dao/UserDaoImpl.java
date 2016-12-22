@@ -9,6 +9,7 @@ import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.matija.persistence.model.User;
 import com.matija.persistence.model.UserRole;
@@ -72,11 +73,8 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@SuppressWarnings("unchecked")
-	public List<User> getUsersForAdminPage(int pageNumber) {
+	public List<User> getPaginatedUsers(int offset, int usersPerPage) {
 		List<User> users = new ArrayList<User>();
-		int usersPerPage = 50;
-
-		int offset = (pageNumber - 1) * usersPerPage;
 
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(User.class);
 		criteria.setFirstResult(offset);
@@ -88,6 +86,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Override
+	@Transactional
 	public Long userTotalCount() {
 		Criteria criteriaCount = sessionFactory.getCurrentSession().createCriteria(User.class);
 		criteriaCount.setProjection(Projections.rowCount());

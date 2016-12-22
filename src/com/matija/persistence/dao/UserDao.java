@@ -13,8 +13,9 @@ public interface UserDao {
 
 	User registerNewUserAccount(UserRegistrationDTO userDTO);
 	
-	List<User> getUsersForAdminPage(int pageNumber);
+	List<User> getPaginatedUsers(int offset, int usersPerPage);
 	
 	Long userTotalCount();
+
 
 }

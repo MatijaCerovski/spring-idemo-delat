@@ -45,7 +45,6 @@
 			<table class="table table-bordered">
 				<thead>
 					<tr>
-						<th>ID</th>
 						<th>Username</th>
 						<th>Email</th>
 						<th>Role</th>
@@ -53,20 +52,25 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
-						<td>1</td>
-						<td>Anna</td>
-					</tr>
-					<tr>
-						<td>2</td>
-						<td>Debbie</td>
-					</tr>
-					<tr>
-						<td>3</td>
-						<td>John</td>
-					</tr>
+
+					<c:forEach items="${users}" var="user">
+						<tr>
+							<td><c:out value="${user.username}"></c:out></td>
+							<td><c:out value="${user.email}"></c:out></td>
+							<td>Jos nisu dodane</td>
+							<td><c:out value="${user.enabled}"></c:out></td>
+						</tr>
+					</c:forEach>
 				</tbody>
+
 			</table>
+
+			<form name='paginationForm' action="<c:url value='/admin' />"
+				method='POST'>
+				<c:forEach var="i" begin="1" end="${totalPages}" varStatus="loop">
+					<input class="btn btn-default" name="${i}" type="submit" value="${i}">
+				</c:forEach>
+			</form>
 		</div>
 
 	</div>

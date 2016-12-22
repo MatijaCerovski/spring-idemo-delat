@@ -1,5 +1,7 @@
 package com.matija.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -31,6 +33,17 @@ public class UserServiceImpl implements IUserService {
 		// ako ne postoji takav korisnik dodati ga u bazu
 
 		return userDao.registerNewUserAccount(userDTO);
+
+	}
+
+	@Transactional
+	@Override
+	public List<User> getUsersForAdminPage(int pageNumber) {
+		
+		int usersPerPage = 50;
+		int offset = (pageNumber - 1) * usersPerPage;
+		
+		return userDao.getPaginatedUsers(offset, usersPerPage);
 
 	}
 
