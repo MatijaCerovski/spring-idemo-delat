@@ -20,9 +20,9 @@
 			</h1>
 			<nav>
 				<ul>
-					<li><a href="home">[Home]</a></li>
-					<li><a href="about">[About]</a></li>
-					<li><a href="admin">[Admin]</a></li>
+					<li><a href="${pageContext.request.contextPath}/home">[Home]</a></li>
+					<li><a href="${pageContext.request.contextPath}/about">[About]</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/1">[Admin]</a></li>
 					<c:choose>
 						<c:when test="${not empty pageContext.request.userPrincipal}">
 							<li><a href="logout">[Logout]</a></li>
@@ -57,7 +57,9 @@
 						<tr>
 							<td><c:out value="${user.username}"></c:out></td>
 							<td><c:out value="${user.email}"></c:out></td>
-							<td>Jos nisu dodane</td>
+							<td><c:forEach items="${user.userRole}" var="userRole">
+									<c:out value="${userRole.role}"></c:out>
+								</c:forEach></td>
 							<td><c:out value="${user.enabled}"></c:out></td>
 						</tr>
 					</c:forEach>
@@ -65,9 +67,10 @@
 
 			</table>
 
-				<c:forEach var="i" begin="1" end="${totalPages}" varStatus="loop">
-					<a href="${pageContext.request.contextPath}/admin/${i}" class="btn btn-default"><c:out value="${i}" /></a>
-				</c:forEach>
+			<c:forEach var="i" begin="1" end="${totalPages}" varStatus="loop">
+				<a href="${pageContext.request.contextPath}/admin/${i}"
+					class="btn btn-default"><c:out value="${i}" /></a>
+			</c:forEach>
 
 		</div>
 

@@ -16,15 +16,15 @@
 			</h1>
 			<nav>
 				<ul>
-					<li><a href="home">[Home]</a></li>
-					<li><a href="about">[About]</a></li>
-					<li><a href="admin">[Admin]</a></li>
+					<li><a href="${pageContext.request.contextPath}/home">[Home]</a></li>
+					<li><a href="${pageContext.request.contextPath}/about">[About]</a></li>
+					<li><a href="${pageContext.request.contextPath}/admin/1">[Admin]</a></li>
 					<c:choose>
 						<c:when test="${not empty pageContext.request.userPrincipal}">
-							<li><a href="logout">[Logout]</a></li>
+							<li><a href="${pageContext.request.contextPath}/logout">[Logout]</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="login">[Login]</a></li>
+							<li><a href="${pageContext.request.contextPath}/login">[Login]</a></li>
 						</c:otherwise>
 
 					</c:choose>

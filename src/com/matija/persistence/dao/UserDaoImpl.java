@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Criteria;
+import org.hibernate.Hibernate;
 import org.hibernate.SessionFactory;
 import org.hibernate.criterion.Projections;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -80,6 +81,12 @@ public class UserDaoImpl implements UserDao {
 		criteria.setFirstResult(offset);
 		criteria.setMaxResults(usersPerPage);
 		users = criteria.list();
+		
+		//ovo sluzi kako bi inicijalizirali role za svih 50 usera jer im je load type na LAZY
+		//tako da treba rec hibernatu da ih dohvati
+		for(User user : users){
+			Hibernate.initialize(user.getUserRole());
+		}
 		
 		return users;
 		
