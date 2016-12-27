@@ -25,10 +25,10 @@
 					<li><a href="${pageContext.request.contextPath}/admin/1">[Admin]</a></li>
 					<c:choose>
 						<c:when test="${not empty pageContext.request.userPrincipal}">
-							<li><a href="logout">[Logout]</a></li>
+							<li><a href="${pageContext.request.contextPath}/logout">[Logout]</a></li>
 						</c:when>
 						<c:otherwise>
-							<li><a href="login">[Login]</a></li>
+							<li><a href="${pageContext.request.contextPath}/login">[Login]</a></li>
 						</c:otherwise>
 
 					</c:choose>
@@ -38,10 +38,16 @@
 		</div>
 	</header>
 
-
+	<h1>Console></h1>
+	<form action="<c:url value='/console' />" method="POST">
+		<input id="console" type="text" name="command"> <input
+			type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}" />
+	</form>
 	<div class="container">
+
 		<div class="bootstrap-iso">
 			<h2>Admin Controls</h2>
+
 			<table class="table table-bordered">
 				<thead>
 					<tr>
